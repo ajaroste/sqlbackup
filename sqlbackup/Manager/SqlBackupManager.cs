@@ -19,7 +19,7 @@ namespace sqlbackup.Manager
         {
 
         
-            if (SQL == SqlEnum.POSGRESQL)
+            if (SQL == SqlEnum.POSTGRESQL)
             {
                 string backupFile = $"{Backupfile}/{Database}_{DateTime.Now:yyyy-MM-dd-HH-mm}.bak";
                 string pgDumpPath = @"C:\Program Files\PostgreSQL\13\bin\pg_dump.exe"; // pg_dump'ın tam yolunu belirtin
@@ -51,7 +51,7 @@ namespace sqlbackup.Manager
                             return $"Yedekleme sırasında hata oluştu: {error}";
                         }
 
-                        return $"Veritabanı {Database} başarıyla {Backupfile} yoluna yedeklendi.";
+                        return "1";
                     }
                 }
                 catch (Exception ex)
@@ -69,7 +69,7 @@ namespace sqlbackup.Manager
                     string query = $@"
                 BACKUP DATABASE [{Database}] 
                 TO DISK = '{Backupfile+@"\"+Database+"_"+ DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".bak"}' 
-                WITH FORMAT, INIT, SKIP, REWIND, NOUNLOAD, STATS = 10";
+                WITH FORMAT, INIT, SKIP, REWIND";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -77,7 +77,7 @@ namespace sqlbackup.Manager
                         {
                             connection.Open();
                             command.ExecuteNonQuery();
-                            return $"Veritabanı {Database} başarıyla {Backupfile} yoluna yedeklendi.";
+                            return "1";
                         }
                         catch (Exception ex)
                         {
@@ -108,7 +108,7 @@ namespace sqlbackup.Manager
                             }
                         }
                     }
-                    return $"Veritabanı {Database} başarıyla {Backupfile} yoluna yedeklendi.";
+                    return "1";
                 }
                 catch (Exception ex)
                 {

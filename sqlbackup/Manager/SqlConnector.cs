@@ -7,14 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 using MySql.Data.MySqlClient;
+using sqlbackup.Model;
+
 namespace sqlbackup.Manager
 {
    public static class SqlConnector
     {
-        public static List<string> SqlConnection(SqlEnum SQL,string Server , string Username, string Passworld)
+        public static SqlConnectionModel SqlConnection(SqlEnum SQL,string Server , string Username, string Passworld)
         {
             string connectionString;
-            if (SQL == SqlEnum.POSGRESQL)
+            if (SQL == SqlEnum.POSTGRESQL)
             {
 
                 connectionString = $"Server={Server};User Id={Username};Password={Passworld};";
@@ -38,7 +40,7 @@ namespace sqlbackup.Manager
                             }
                         }
 
-                        return databaseNames;
+                        //return databaseNames;
                     }
                     catch (Npgsql.NpgsqlException ex)
                     {
@@ -53,6 +55,7 @@ namespace sqlbackup.Manager
             }
             else if (SQL == SqlEnum.MSSQL)
             {
+                SqlConnectionModel Sqlmodel = new SqlConnectionModel();
                connectionString = $"Server={Server};User Id={Username};Password={Passworld};";
 
                 List<string> databaseNames = new List<string>();
@@ -69,22 +72,23 @@ namespace sqlbackup.Manager
                             {
                                 while (reader.Read())
                                 {
-                                    databaseNames.Add(reader["name"].ToString()); 
+                                    Sqlmodel.Databases.Add(reader["name"].ToString()); 
                                 }
                             }
                         }
 
-                        return databaseNames; 
+                       
                     }
                     catch (SqlException ex)
                     {
-                        Console.WriteLine("Bağlantı Hatası: " + ex.Message);
+                        Sqlmodel.Errors = ex.Message;
 
-                        return null; 
+                      
                     }
+                    return Sqlmodel;
                 }
 
-
+               
                 //MessageBox.Show("MSSQL");
             }
             else if (SQL == SqlEnum.MYSQL)
@@ -110,7 +114,7 @@ namespace sqlbackup.Manager
                             }
                         }
 
-                        return databaseNames;
+                        //return databaseNames;
                     }
                     catch (MySqlException ex)
                     {

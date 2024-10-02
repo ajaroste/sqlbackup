@@ -10,7 +10,8 @@ namespace sqlbackup.Enums
     {
         MSSQL,
         MYSQL,
-        POSGRESQL
+        POSTGRESQL
+      
 
     }
 
@@ -22,7 +23,7 @@ namespace sqlbackup.Enums
                 return "MSSQL";
           else  if (sqlEnum == SqlEnum.MYSQL)
                 return "MSSQL";
-          else if (sqlEnum == SqlEnum.POSGRESQL)
+          else if (sqlEnum == SqlEnum.POSTGRESQL)
                 return "MSSQL";
        return "";
         }

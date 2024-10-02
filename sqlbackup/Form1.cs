@@ -3,6 +3,8 @@ using DevExpress.XtraEditors;
 using sqlbackup.Enums;
 using sqlbackup.Manager;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -24,30 +26,30 @@ namespace sqlbackup
 
             CBDatabase.Properties.Items.Clear();
     
-            var x = SqlConnector.SqlConnection(SQL, TBServer.Text, TBUsername.Text, TBPassworld.Text);
+            //var x = SqlConnector.SqlConnection(SQL, TBServer.Text, TBUsername.Text, TBPassworld.Text);
 
-            if (x != null)
-            {
-                foreach (var item in x)
-                {
-                    CBDatabase.Properties.Items.Add(item);
-                }
-                connection = true;
-
-            }
-            else
-            {
-                XtraMessageBox.Show("Bağlantı Başarısız bro :)");
-                connection = false;
-            }
+            //if (x != null)
+            //{
+            //    foreach (var item in x)
+            //    {
+            //        CBDatabase.Properties.Items.Add(item);
+            //    }
+            //    connection = true;
+            //    XtraMessageBox.Show("Bağlantı Başarılı bro yedek alabilirsin :)");
+            //}
+            //else
+            //{
+            //    XtraMessageBox.Show("Bağlantı Başarısız bro :)");
+            //    connection = false;
+            //}
         }
 
         private void BtnnBackup_Click(object sender, EventArgs e)
         {
             
-            if (!connection)
+            if (SqlConnector.SqlConnection(SQL, TBServer.Text, TBUsername.Text, TBPassworld.Text) == null)
             {
-                XtraMessageBox.Show("Sunucu Bağlantısı Sağlanmamış !");
+                XtraMessageBox.Show("Sunucu Bağlantısı Sağlanmamış veya Bağlantı kopmuş !");
             }
             else if (string.IsNullOrEmpty(CBDatabase.Text)) 
             {
@@ -63,14 +65,22 @@ namespace sqlbackup
             else
             {
                 var a = SqlBackupManager.SqlBackup(SQL,btnEditKlasorYolu.Text,CBDatabase.Text ,TBServer.Text, TBUsername.Text, TBPassworld.Text);
-                XtraMessageBox.Show(a);
+                if(a == "1")
+                {
+                  if(XtraMessageBox.Show($"Veritabanı {CBDatabase.Text} başarıyla yedeklendi. Dosya Konumunu açmak istermisiniz ?", "Uyarı", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+
+                        Process.Start("explorer.exe", btnEditKlasorYolu.Text);
+           
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show(a);
+                }
+                
+               
             }
-
-
-
-
-
-
 
         }
 
