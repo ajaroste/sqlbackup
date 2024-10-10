@@ -106,74 +106,7 @@ namespace sqlbackup
                 btnEditKlasorYolu.Text = selectedFolder;
             }
         }
-        //private void BTNGDKAYDET_Click(object sender, EventArgs e)
-        //{
-        //    string filePath = "dosya_yolu/photo.jpg"; // Burayı değiştirin
-        //    UploadFile(filePath);
-        //}
-        //private void Authenticate()
-        //{
-        //    GoogleCredential credential;
 
-        //    // Hizmet hesabı JSON dosyasının yolu
-        //    using (var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
-        //    {
-        //        credential = GoogleCredential.FromStream(stream)
-        //            .CreateScoped(DriveService.Scope.DriveFile);
-        //    }
-
-        //    _driveService = new DriveService(new BaseClientService.Initializer()
-        //    {
-        //        HttpClientInitializer = credential,
-        //        ApplicationName = "Google Drive API .NET Quickstart",
-        //    });
-        //}
-
-
-        //private void UploadFile(string filePath)
-        //{
-        //    var fileMetadata = new Google.Apis.Drive.v3.Data.File()
-        //    {
-        //        Name = Path.GetFileName(filePath),
-        //        Parents = new List<string> { "1QagmmBvgctoNM5CGJmo3VaMWpPWbp7te" }
-        //    };
-
-        //    using (var stream = new FileStream(filePath, FileMode.Open))
-        //    {
-        //        var request = _driveService.Files.Create(fileMetadata, stream, GetMimeType(filePath));
-        //        request.Fields = "id";
-        //        request.Upload();
-        //        var file = request.ResponseBody;
-        //        MessageBox.Show($"Dosya yüklendi! Dosya ID: {file.Id}");
-        //    }
-        //}
-
-
-        //private string GetMimeType(string filePath)
-        //{
-        //    string mimeType = "application/octet-stream";
-        //    string extension = Path.GetExtension(filePath).ToLowerInvariant();
-
-        //    switch (extension)
-        //    {
-        //        case ".txt":
-        //            mimeType = "text/plain";
-        //            break;
-        //        case ".pdf":
-        //            mimeType = "application/pdf";
-        //            break;
-        //        case ".jpg":
-        //        case ".jpeg":
-        //            mimeType = "image/jpeg";
-        //            break;
-        //        case ".png":
-        //            mimeType = "image/png";
-        //            break;
-        //            // Diğer MIME türlerini buraya ekleyebilirsiniz
-        //    }
-
-        //    return mimeType;
-        //}
     }
 
 }
