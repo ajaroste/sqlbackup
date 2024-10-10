@@ -15,6 +15,8 @@ namespace sqlbackup.Manager
     {
         public static SqlConnectionModel SqlConnection(SqlEnum SQL,string Server , string Username, string Passworld)
         {
+
+            SqlConnectionModel Sqlmodel = new SqlConnectionModel();
             string connectionString;
             if (SQL == SqlEnum.POSTGRESQL)
             {
@@ -35,7 +37,7 @@ namespace sqlbackup.Manager
                             {
                                 while (reader.Read())
                                 {
-                                    databaseNames.Add(reader["datname"].ToString());
+                                    Sqlmodel.Databases.Add(reader["datname"].ToString());
                                 }
                             }
                         }
@@ -44,10 +46,9 @@ namespace sqlbackup.Manager
                     }
                     catch (Npgsql.NpgsqlException ex)
                     {
-                        Console.WriteLine("Bağlantı Hatası: " + ex.Message);
-
-                        return null;
+                       Sqlmodel.Errors =  ex.Message;
                     }
+                    return Sqlmodel;
                 }
 
 
@@ -55,7 +56,6 @@ namespace sqlbackup.Manager
             }
             else if (SQL == SqlEnum.MSSQL)
             {
-                SqlConnectionModel Sqlmodel = new SqlConnectionModel();
                connectionString = $"Server={Server};User Id={Username};Password={Passworld};";
 
                 List<string> databaseNames = new List<string>();
@@ -83,7 +83,6 @@ namespace sqlbackup.Manager
                     {
                         Sqlmodel.Errors = ex.Message;
 
-                      
                     }
                     return Sqlmodel;
                 }
@@ -109,7 +108,7 @@ namespace sqlbackup.Manager
                             {
                                 while (reader.Read())
                                 {
-                                    databaseNames.Add(reader[0].ToString()); // İlk sütun veritabanı adı
+                                   Sqlmodel.Databases.Add(reader[0].ToString()); // İlk sütun veritabanı adı
                                 }
                             }
                         }
@@ -118,9 +117,10 @@ namespace sqlbackup.Manager
                     }
                     catch (MySqlException ex)
                     {
-                        Console.WriteLine("Bağlantı Hatası: " + ex.Message);
-                        return null;
-                    }
+                        Sqlmodel.Errors= ex.Message;
+                       
+                    } 
+                    return Sqlmodel;
                 }
             }
 

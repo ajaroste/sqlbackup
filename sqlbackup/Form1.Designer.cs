@@ -47,14 +47,14 @@ namespace sqlbackup
             // 
             // TBServer
             // 
-            this.TBServer.Location = new System.Drawing.Point(83, 84);
+            this.TBServer.Location = new System.Drawing.Point(105, 84);
             this.TBServer.Name = "TBServer";
             this.TBServer.Size = new System.Drawing.Size(195, 20);
             this.TBServer.TabIndex = 0;
             // 
             // CBsql
             // 
-            this.CBsql.Location = new System.Drawing.Point(83, 39);
+            this.CBsql.Location = new System.Drawing.Point(105, 39);
             this.CBsql.Name = "CBsql";
             this.CBsql.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -67,21 +67,21 @@ namespace sqlbackup
             // 
             // TBUsername
             // 
-            this.TBUsername.Location = new System.Drawing.Point(83, 131);
+            this.TBUsername.Location = new System.Drawing.Point(105, 131);
             this.TBUsername.Name = "TBUsername";
             this.TBUsername.Size = new System.Drawing.Size(195, 20);
             this.TBUsername.TabIndex = 2;
             // 
             // TBPassworld
             // 
-            this.TBPassworld.Location = new System.Drawing.Point(83, 172);
+            this.TBPassworld.Location = new System.Drawing.Point(105, 172);
             this.TBPassworld.Name = "TBPassworld";
             this.TBPassworld.Size = new System.Drawing.Size(195, 20);
             this.TBPassworld.TabIndex = 3;
             // 
             // CBDatabase
             // 
-            this.CBDatabase.Location = new System.Drawing.Point(31, 316);
+            this.CBDatabase.Location = new System.Drawing.Point(53, 316);
             this.CBDatabase.Name = "CBDatabase";
             this.CBDatabase.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -90,7 +90,7 @@ namespace sqlbackup
             // 
             // BtnConnection
             // 
-            this.BtnConnection.Location = new System.Drawing.Point(89, 224);
+            this.BtnConnection.Location = new System.Drawing.Point(111, 224);
             this.BtnConnection.Name = "BtnConnection";
             this.BtnConnection.Size = new System.Drawing.Size(188, 37);
             this.BtnConnection.TabIndex = 6;
@@ -99,7 +99,7 @@ namespace sqlbackup
             // 
             // BtnnBackup
             // 
-            this.BtnnBackup.Location = new System.Drawing.Point(89, 413);
+            this.BtnnBackup.Location = new System.Drawing.Point(111, 413);
             this.BtnnBackup.Name = "BtnnBackup";
             this.BtnnBackup.Size = new System.Drawing.Size(188, 37);
             this.BtnnBackup.TabIndex = 7;
@@ -108,7 +108,7 @@ namespace sqlbackup
             // 
             // btnEditKlasorYolu
             // 
-            this.btnEditKlasorYolu.Location = new System.Drawing.Point(31, 354);
+            this.btnEditKlasorYolu.Location = new System.Drawing.Point(53, 354);
             this.btnEditKlasorYolu.Name = "btnEditKlasorYolu";
             this.btnEditKlasorYolu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -121,19 +121,18 @@ namespace sqlbackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 519);
-            this.Controls.Add(this.btnEditKlasorYolu);
-            this.Controls.Add(this.BtnnBackup);
-            this.Controls.Add(this.BtnConnection);
-            this.Controls.Add(this.CBDatabase);
-            this.Controls.Add(this.TBPassworld);
-            this.Controls.Add(this.TBUsername);
+            this.ClientSize = new System.Drawing.Size(393, 519);
             this.Controls.Add(this.CBsql);
+            this.Controls.Add(this.btnEditKlasorYolu);
+            this.Controls.Add(this.BtnConnection);
+            this.Controls.Add(this.BtnnBackup);
+            this.Controls.Add(this.TBUsername);
+            this.Controls.Add(this.CBDatabase);
             this.Controls.Add(this.TBServer);
-            this.MaximumSize = new System.Drawing.Size(374, 558);
+            this.Controls.Add(this.TBPassworld);
             this.MinimumSize = new System.Drawing.Size(374, 558);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sql Yedekle";
             ((System.ComponentModel.ISupportInitialize)(this.TBServer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CBsql.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBUsername.Properties)).EndInit();
